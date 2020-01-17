@@ -16,8 +16,8 @@ class App extends Component {
   sceneSetup = () => {
     // get container dimensions and use them for scene sizing
     const el = document.getElementById("thing")
-    const width =1000;
-    const height = 500;
+    const width =window.innerWidth;
+    const height = window.innerHeight;
 
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(
