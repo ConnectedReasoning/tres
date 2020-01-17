@@ -12,7 +12,9 @@ class App extends Component {
       this.sceneSetup();
       this.addCustomSceneObjects();
       this.startAnimationLoop();
+      window.addEventListener('resize', this.handleWindowResize);
   }
+  
   sceneSetup = () => {
     // get container dimensions and use them for scene sizing
     const el = document.getElementById("thing")
@@ -26,7 +28,7 @@ class App extends Component {
         0.1, // near plane
         1000 // far plane
     );
-    
+    this.controls = new OrbitControls( this.camera, this.el );
     // set some distance from a cube that is located at z = 0
     this.camera.position.z = 5;
 
@@ -59,6 +61,14 @@ class App extends Component {
     this.scene.add( lights[ 0 ] );
     this.scene.add( lights[ 1 ] );
     this.scene.add( lights[ 2 ] );
+  };
+  handleWindowResize = () => {
+      const width = this.el.innerWidth;
+      const height = this.el.innerHeight;
+
+      this.renderer.setSize( width, height );
+      this.camera.aspect = width / height;
+      this.camera.updateProjectionMatrix();
   };
   startAnimationLoop = () => {
       this.cube.rotation.x += 0.01;
