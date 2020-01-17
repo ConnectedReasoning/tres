@@ -28,7 +28,7 @@ class App extends Component {
         0.1, // near plane
         1000 // far plane
     );
-    this.controls = new OrbitControls( this.camera, this.el );
+    this.controls = new OrbitControls( this.camera, el );
     // set some distance from a cube that is located at z = 0
     this.camera.position.z = 5;
 
